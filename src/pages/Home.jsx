@@ -14,7 +14,7 @@ const Home = () => {
         navigate("https://zerodha-dashboard-phi.vercel.app");
       }
       const { data } = await axios.post(
-        "https://zerodha-dashboard-phi.vercel.app/",
+        "/",
         {},
         { withCredentials: true }
       );
