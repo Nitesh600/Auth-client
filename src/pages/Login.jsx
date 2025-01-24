@@ -31,7 +31,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "https://auth-server-3.onrender.com/login",
+        "https://auth-server-4e5f.onrender.com/login",
         {
           ...inputValue,
         },
