@@ -11,7 +11,7 @@ const Home = () => {
   useEffect(() => {
     const verifyCookie = async () => {
       if (!cookies.token) {
-        navigate("/login");
+        navigate("https://zerodha-dashboard-phi.vercel.app");
       }
       const { data } = await axios.post(
         "https://zerodha-dashboard-phi.vercel.app/",
