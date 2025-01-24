@@ -6,40 +6,49 @@ import { ToastContainer, toast } from "react-toastify";
 
 const Home = () => {
   const navigate = useNavigate();
-  const [cookies, removeCookie] = useCookies([]);
+  const [cookies, removeCookie] = useCookies(["token"]);
   const [username, setUsername] = useState("");
+
   useEffect(() => {
     const verifyCookie = async () => {
       if (!cookies.token) {
         navigate("/login");
+        return;
       }
-      const { data } = await axios.post(
-        "/",
-        {},
-        { withCredentials: true }
-      );
-      const { status, user } = data;
-      setUsername(user);
-      return status
-        ? toast(`Hello ${user}`, {
+
+      try {
+        const { data } = await axios.post("/", {}, { withCredentials: true });
+        if (data?.status) {
+          setUsername(data.user);
+          toast.success(`Hello ${data.user}`, {
             position: "top-right",
-          })
-        : (removeCookie("token"), navigate("/login"));
+          });
+        } else {
+          removeCookie("token");
+          navigate("/login");
+        }
+      } catch (error) {
+        console.error("Error verifying cookie:", error);
+        removeCookie("token");
+        navigate("/login");
+      }
     };
+
     verifyCookie();
-  }, [cookies, navigate, removeCookie]);
-  const Logout = () => {
+  }, [cookies.token, navigate, removeCookie]);
+
+  const handleLogout = () => {
     removeCookie("token");
-    navigate("/signup");
+    navigate("/login");
   };
+
   return (
     <>
       <div className="home_page">
         <h4>
-          {" "}
-          Welcome <span>{username}</span>
+          Welcome <span>{username || "Guest"}</span>
         </h4>
-        <button onClick={Logout}>LOGOUT</button>
+        <button onClick={handleLogout}>LOGOUT</button>
       </div>
       <ToastContainer />
     </>
