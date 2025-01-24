@@ -14,7 +14,7 @@ const Home = () => {
         navigate("/login");
       }
       const { data } = await axios.post(
-        "https://zerodha-backend-1.onrender.com",
+        "https://zerodha-dashboard-phi.vercel.app/",
         {},
         { withCredentials: true }
       );
