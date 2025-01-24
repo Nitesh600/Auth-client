@@ -42,7 +42,7 @@ const Signup = () => {
       if (success) {
         handleSuccess(message);
         setTimeout(() => {
-          navigate("https://zerodha-dashboard-phi.vercel.app");
+          navigate("/");
         }, 1000);
       } else {
         handleError(message);
