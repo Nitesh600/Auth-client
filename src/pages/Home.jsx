@@ -14,7 +14,7 @@ const Home = () => {
         navigate("/login");
       }
       const { data } = await axios.post(
-        "https://auth-server-4e5f.onrender.com",
+        "https://zerodha-backend-1.onrender.com",
         {},
         { withCredentials: true }
       );
