@@ -8,7 +8,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="https://auth-server-4e5f.onrender.com/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="https://auth-server-4e5f.onrender.com/signup" element={<Signup />} />
       </Routes>
     </div>
   );
